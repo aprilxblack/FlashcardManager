@@ -29,7 +29,7 @@ export class NavMenu extends Component {
             <Navbar className="main-menu text-white navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow p-3 mb-3" light>
                 <Container>
                     <a href="/"> <img src={Icon} alt={"Icon"} className="menu-icon" /></a>
-                    <NavbarBrand tag={Link} to="/" className="text-white">Flashcard Manager</NavbarBrand>
+                    <NavbarBrand tag={Link} to="/" className="text-white page-title">Flashcard Manager</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                     <a href="/counter">
                         <img src={ProfileIcon} alt={"Profile"} className="profile-icon"/>
@@ -40,10 +40,16 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="text-white" to="/">Home</NavLink>
                 </NavItem>
                 <NavItem className="main-menu-item">
-                  <NavLink tag={Link} className="text-white" to="/counter">Counter</NavLink>
+                  <NavLink tag={Link} className="text-white" to="/counter">Profile</NavLink>
                 </NavItem>
-                <NavItem className="main-menu-item">
-                   <NavLink tag={Link} className="text-white" to="/fetch-data">Fetch data</NavLink>
+                 <NavItem className="main-menu-item">
+                   <NavLink tag={Link} className="text-white" to="/fetch-data">Browse Sets </NavLink>
+                </NavItem>
+                 <NavItem className="main-menu-item">
+                   <NavLink tag={Link} className="text-white" to="/fetch-data">Create a Set</NavLink>
+                </NavItem>
+                 <NavItem className="main-menu-item">
+                   <NavLink tag={Link} className="text-white" to="/fetch-data">Settings</NavLink>
                 </NavItem>
               </ul>
             </Collapse>

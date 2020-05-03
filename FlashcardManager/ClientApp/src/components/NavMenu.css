@@ -25,7 +25,7 @@ html {
 .menu-icon{
     width: 30px;
     height: 30px;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .profile-icon{
@@ -41,5 +41,9 @@ html {
 
     .profile-icon {
         display: block;
+    }
+
+    .page-title {
+        font-size: 9pt;
     }
 }
