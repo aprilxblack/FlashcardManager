@@ -1,0 +1,9 @@
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netstandard2.0\FlashcardManager.DataAccess.deps.json
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netstandard2.0\FlashcardManager.DataAccess.dll
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netstandard2.0\FlashcardManager.DataAccess.pdb
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.csprojAssemblyReference.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.AssemblyInfo.cs
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.dll
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netstandard2.0\FlashcardManager.DataAccess.pdb

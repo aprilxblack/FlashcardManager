@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Sg4m0DrXffBIWQrYTgaSqWh6L24Je+gRnnqTtiuk6pI71UPdFHAXSLy1uePQvW6vbFrZVuvTDU3hk8f1TQt+2g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Karolina\\Desktop\\Projects\\FlashcardManager\\FlashcardManager.Models\\FlashcardManager.Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Karolina\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Karolina\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
