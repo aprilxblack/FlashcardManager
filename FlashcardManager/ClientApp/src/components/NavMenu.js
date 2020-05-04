@@ -31,7 +31,7 @@ export class NavMenu extends Component {
                     <a href="/"> <img src={Icon} alt={"Icon"} className="menu-icon" /></a>
                     <NavbarBrand tag={Link} to="/" className="text-white page-title">Flashcard Manager</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <a href="/counter">
+                    <a href="/profile">
                         <img src={ProfileIcon} alt={"Profile"} className="profile-icon"/>
                     </a>
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
@@ -40,7 +40,7 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="text-white" to="/">Home</NavLink>
                 </NavItem>
                 <NavItem className="main-menu-item">
-                  <NavLink tag={Link} className="text-white" to="/counter">Profile</NavLink>
+                  <NavLink tag={Link} className="text-white" to="/profile">Profile</NavLink>
                 </NavItem>
                  <NavItem className="main-menu-item">
                    <NavLink tag={Link} className="text-white" to="/fetch-data">Browse Sets </NavLink>
@@ -49,7 +49,7 @@ export class NavMenu extends Component {
                    <NavLink tag={Link} className="text-white" to="/fetch-data">Create a Set</NavLink>
                 </NavItem>
                  <NavItem className="main-menu-item">
-                   <NavLink tag={Link} className="text-white" to="/fetch-data">Settings</NavLink>
+                   <NavLink tag={Link} className="text-white" to="/settings">Settings</NavLink>
                 </NavItem>
               </ul>
             </Collapse>

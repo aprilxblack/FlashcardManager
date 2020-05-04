@@ -11,7 +11,9 @@ export class Footer extends Component {
                 <div className="float-right text-danger">
                     Mute here:
                     <img src={MuteIcon} alt={"Mute"} className="icon ml-2 mr-2" />
-                    <img src={SettingsIcon} alt={"Settings"} className="icon" />
+                    <a href="/settings">
+                        <img src={SettingsIcon} alt={"Settings"} className="icon" />
+                    </a>
                 </div>
             </div>
         )
