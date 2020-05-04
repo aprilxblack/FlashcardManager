@@ -7,7 +7,7 @@ export class Footer extends Component {
     render() {
         return (
             <div className="footer text-white navbar border-top box-shadow p-3 fixed-bottom font-weight-bold">
-                Username
+                {sessionStorage.getItem('username')}
                 <div className="float-right text-danger">
                     Mute here:
                     <img src={MuteIcon} alt={"Mute"} className="icon ml-2 mr-2" />

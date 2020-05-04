@@ -20,8 +20,8 @@ export class Home extends Component {
     }
   render () {
     return (
-      <div>
-            <h4 className="mb-3">Hi Username! What would you like to do today?</h4>
+        <div>
+            <h4 className="mb-3">Hi {sessionStorage.getItem('username')}! What would you like to do today?</h4>
 
             {this.lastOpenedSet == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
                 <> <ActionBox displayText="Continue Learning" action={"/learn/" + this.lastOpenedSet} icon={ContinueIcon} /> </>}
