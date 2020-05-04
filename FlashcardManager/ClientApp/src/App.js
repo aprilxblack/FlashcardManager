@@ -7,7 +7,6 @@ import { Counter } from './components/Counter';
 import { Profile } from './components/Profile';
 import { Settings } from './components/Settings';
 import './custom.css'
-import Login from './components/Login';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -25,7 +24,7 @@ export default class App extends Component {
                     <Route path='/profile' component={Profile} />
                     <Route path='/settings' component={Settings} />
                 </Layout>
-        );
+        ); 
         
   }
 }

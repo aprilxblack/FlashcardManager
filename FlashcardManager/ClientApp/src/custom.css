@@ -83,3 +83,16 @@ a:hover{
 .close {
     font-size: 2.5rem;
 }
+
+.submit-button{
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    display: block;
+    margin: 0 auto;
+    min-width: 100px;
+}
+
+    .submit-button:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+    }
