@@ -96,3 +96,11 @@ a:hover{
         background-color: var(--secondary);
         border-color: var(--secondary);
     }
+
+.register-container {
+    display: none;
+}
+
+.login-container {
+    display: block;
+}
