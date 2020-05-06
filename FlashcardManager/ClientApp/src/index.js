@@ -12,7 +12,7 @@ let isAuthenticated = sessionStorage.getItem('isAuthenticated');
 
 ReactDOM.render(
     <BrowserRouter basename={baseUrl}>
-        {isAuthenticated ? <App /> : <LoginScreen/>}
+        {isAuthenticated ? <App /> : <LoginScreen />}
   </BrowserRouter>,
   rootElement);
 

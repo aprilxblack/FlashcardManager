@@ -3,6 +3,60 @@ import { ActionBox } from './ActionBox';
 import { TitleScreenHeader } from './TitleScreenHeader';
 import PlusIcon from '../images/plus-icon.png';
 
+var user = {
+    'Username': 'Karolina',
+    'UserID': 2,
+    'Sets': [
+        {
+            ID: 1,
+            Name: 'Japanese words',
+            Cards: [
+                {
+                    ID: 1,
+                    Question: 'konnichiwa',
+                    Answer: 'good afternoon'
+                },
+                {
+                    ID: 2,
+                    Question: 'ohayo',
+                    Answer: 'good morning'
+                },
+                {
+                    ID: 3,
+                    Question: 'pan',
+                    Answer: 'bread'
+                },
+                {
+                    ID: 4,
+                    Question: 'ai',
+                    Answer: 'love',
+                },
+                {
+                    ID: 5,
+                    Question: 'neko',
+                    Answer: 'cat'
+                }
+            ]
+        },
+        {
+            ID: 2,
+            Name: 'Cat breeds',
+            Cards: [
+                {
+                    ID: 1,
+                    Question: 'grey cat',
+                    Answer: 'british shorthair'
+                },
+                {
+                    ID: 2,
+                    Question: 'big cat',
+                    Answer: 'maine coon'
+                }
+            ]
+        }
+    ]
+}
+
 export default class LoginScreen extends Component {
     toggleFormDisplay(formToHide, formToShow) {
         document.querySelector(formToHide).style.display = "none";
@@ -11,15 +65,17 @@ export default class LoginScreen extends Component {
 
     handleLogin() {
         sessionStorage.setItem('isAuthenticated', true);
-        sessionStorage.setItem('username', 'Karolina');
+        sessionStorage.setItem('user', JSON.stringify(user));
         console.log('login');
     }
 
     handleRegister() {
+
         sessionStorage.setItem('isAuthenticated', true);
-        sessionStorage.setItem('username', 'Karolina');
+        sessionStorage.setItem('user', JSON.stringify(user));
         console.log('register');
     }
+
     render() {
         return (
             <div className="login-page">
