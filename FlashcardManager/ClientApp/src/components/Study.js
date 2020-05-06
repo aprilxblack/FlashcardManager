@@ -53,8 +53,14 @@ export class Study extends Component {
             <div>
                     <>
                     <h5 className="text-center mb-2">Now studying:
-                    <br/>
-                        {this.set.Name} </h5>
+                    <br />
+                        {this.set.Name} ({this.set.Cards.length} cards) </h5>
+                    <div className="stats text-center mb-2 font-weight-bold">
+                        <span class="text-success mr-2">Good: 1 </span>
+                        <span class="text-danger mr-2">Fail: 1 </span>
+                        <span class="text-info">Left: 4 </span>
+
+                    </div>
                     <div className="action-box container-fluid p-4 bg-pink text-center shadow p-1 mb-3 rounded-lg" onClick={this.onClick} >
                         {this.state.currentCard.Question}
                     </div>

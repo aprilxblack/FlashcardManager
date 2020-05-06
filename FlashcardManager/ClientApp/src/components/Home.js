@@ -8,7 +8,7 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props);
-        this.lastOpenedSet = this.props.lastOpenedSet;
+        this.lastOpenedSetId = this.props.lastOpenedSetId;
         this.user = JSON.parse(sessionStorage.getItem('user'));
     }
     openModal() {
@@ -24,8 +24,8 @@ export class Home extends Component {
         <div>
             <h4 className="mb-3">Hi {this.user.Username}! What would you like to do today?</h4>
 
-            {this.lastOpenedSet == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
-                <> <ActionBox displayText="Continue Learning" action={"/learn/" + this.lastOpenedSet} icon={ContinueIcon} /> </>}
+            {this.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
+                <> <ActionBox displayText="Continue Learning" action={"/study/" + this.lastOpenedSetId} icon={ContinueIcon} /> </>}
             <ActionBox displayText="Browse Sets" action="/browse-sets" icon={SearchIcon} />
             <ActionBox displayText="Create a Set" action="/" icon={PlusIcon} /> 
 
