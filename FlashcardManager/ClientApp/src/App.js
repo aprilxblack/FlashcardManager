@@ -8,7 +8,6 @@ import { Settings } from './components/Settings';
 import './custom.css'
 import { BrowseSets } from './components/BrowseSets';
 import { Study }  from './components/Study';
-import { Test } from './components/Test';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -25,8 +24,7 @@ export default class App extends Component {
                     <Route path='/profile' component={Profile} />
                     <Route path='/settings' component={Settings} />
                     <Route path='/browse-sets' component={BrowseSets} />
-                <Route path='/study/:id' component={Study} />
-                <Route path='/test' component={Test} />
+                    <Route path='/study/:id' component={Study} />
 
                 </Layout>
         ); 
