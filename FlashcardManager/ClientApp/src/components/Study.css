@@ -1,0 +1,20 @@
+﻿body {
+}
+
+.button-container {
+    display: block;
+}
+
+.answer-container {
+    display: none;
+}
+
+.answer-buttons {
+    display: table;
+    margin: 0 auto;
+}
+
+.answer-button-single {
+    display: table-cell;
+    margin: 5px;
+}
