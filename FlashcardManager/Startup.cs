@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using FlashcardManager.DataAccess.Data.Repository.IRepository;
+using FlashcardManager.DataAccess.Data.Repository;
 
 namespace FlashcardManager
 {
@@ -31,6 +33,8 @@ namespace FlashcardManager
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +51,7 @@ namespace FlashcardManager
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

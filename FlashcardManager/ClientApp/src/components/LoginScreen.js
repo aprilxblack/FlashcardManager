@@ -2,6 +2,7 @@
 import { ActionBox } from './ActionBox';
 import { TitleScreenHeader } from './TitleScreenHeader';
 import PlusIcon from '../images/plus-icon.png';
+import $ from 'jquery'; 
 
 var user = {
     'Username': 'Karolina',
@@ -58,6 +59,24 @@ var user = {
 }
 
 export default class LoginScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
+        }
+
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
     toggleFormDisplay(formToHide, formToShow) {
         document.querySelector(formToHide).style.display = "none";
         document.querySelector(formToShow).style.display = "block";
@@ -69,11 +88,55 @@ export default class LoginScreen extends Component {
         console.log('login');
     }
 
-    handleRegister() {
+    handleRegister(e) {
+        e.preventDefault();
 
-        sessionStorage.setItem('isAuthenticated', true);
-        sessionStorage.setItem('user', JSON.stringify(user));
-        console.log('register');
+        if (this.state.password == this.state.confirmPassword) {
+            const data = JSON.stringify({
+                Username: this.state.username,
+                Email: this.state.email,
+                Password: this.state.password
+            });
+
+            console.log(data);
+
+            $.ajax({
+                type: "POST",
+                url: "user/register",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("RequestVerificationToken",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                dataType: "json",
+                data: data,
+                error: function (xhr) {
+                    console.log(xhr);
+                },
+                success: function (xhr) {
+                    alert('success');
+                }
+            });
+        }        
+        //sessionStorage.setItem('isAuthenticated', true);
+        //sessionStorage.setItem('user', JSON.stringify(user));
+
+    }
+
+    handleEmailChange(e) {
+        this.setState({ email: e.target.value }); 
+    }
+
+    handleUsernameChange(e) {
+        this.setState({ username: e.target.value });
+    }
+
+    handlePasswordChange(e) {
+        this.setState({ password: e.target.value });
+    }
+
+    handleConfirmPasswordChange(e) {
+        this.setState({ confirmPassword: e.target.value });
     }
 
     render() {
@@ -87,10 +150,10 @@ export default class LoginScreen extends Component {
                             <h4 className="mb-3 text-center">Welcome to Flashcard Manager!</h4>
                             <ActionBox displayText="New user?" onClick={() => this.toggleFormDisplay('.login-container', '.register-container')} action="#" icon={PlusIcon} />
                             <div className="form-group">
-                                <input type="email" className="form-control" placeholder="email" />
+                                <input type="email" onChange={this.handleEmailChange} className="form-control" placeholder="email" />
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" placeholder="password" />
+                                <input type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="password" />
                             </div>
                             <button type="submit" className="submit-button btn btn-primary">Login</button>
                         </form>
@@ -102,16 +165,16 @@ export default class LoginScreen extends Component {
                         <a href="#" className="text-center" onClick={() => this.toggleFormDisplay('.register-container', '.login-container')}>Already have an account? Login...</a>
                         <form className="mt-2" onSubmit={this.handleRegister}>
                             <div className="form-group">
-                                <input type="email" className="form-control" placeholder="your email" />
+                                <input type="email" onChange={this.handleEmailChange} className="form-control" placeholder="your email" required />
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="username" />
+                                <input type="text" onChange={this.handleUsernameChange} className="form-control" placeholder="username" required />
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" placeholder="password" />
+                                <input type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="password" required />
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" placeholder="confirm password" />
+                                <input type="password" onChange={this.handleConfirmPasswordChange} className="form-control" placeholder="confirm password" required />
                             </div>
                             <button type="submit" className="submit-button btn btn-primary">Register</button>
                         </form>

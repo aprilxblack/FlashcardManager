@@ -16,5 +16,14 @@ namespace FlashcardManager.DataAccess.Data
         }
 
         public DbSet<User> User { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<User>().HasKey(x => x.ID);
+        }
     }
+
+
 }
