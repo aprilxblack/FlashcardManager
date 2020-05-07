@@ -1,0 +1,15 @@
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.DataAccess.deps.json
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.DataAccess.dll
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.AssemblyInfo.cs
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.csprojAssemblyReference.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.DataAccess.pdb
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.dll
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.pdb
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.Models.dll
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.Models.pdb
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.csproj.CopyComplete
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.DataAccess.runtimeconfig.json
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\bin\Debug\netcoreapp3.1\FlashcardManager.DataAccess.runtimeconfig.dev.json
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.genruntimeconfig.cache
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.DataAccess\obj\Debug\netcoreapp3.1\FlashcardManager.DataAccess.csproj.CoreCompileInputs.cache
