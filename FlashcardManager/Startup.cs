@@ -27,7 +27,7 @@ namespace FlashcardManager
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -4,60 +4,6 @@ import { TitleScreenHeader } from './TitleScreenHeader';
 import PlusIcon from '../images/plus-icon.png';
 import $ from 'jquery'; 
 
-var user = {
-    'Username': 'Karolina',
-    'UserID': 2,
-    'Sets': [
-        {
-            ID: 1,
-            Name: 'Japanese words',
-            Cards: [
-                {
-                    ID: 1,
-                    Question: 'konnichiwa',
-                    Answer: 'good afternoon'
-                },
-                {
-                    ID: 2,
-                    Question: 'ohayo',
-                    Answer: 'good morning'
-                },
-                {
-                    ID: 3,
-                    Question: 'pan',
-                    Answer: 'bread'
-                },
-                {
-                    ID: 4,
-                    Question: 'ai',
-                    Answer: 'love',
-                },
-                {
-                    ID: 5,
-                    Question: 'neko',
-                    Answer: 'cat'
-                }
-            ]
-        },
-        {
-            ID: 2,
-            Name: 'Cat breeds',
-            Cards: [
-                {
-                    ID: 1,
-                    Question: 'grey cat',
-                    Answer: 'british shorthair'
-                },
-                {
-                    ID: 2,
-                    Question: 'big cat',
-                    Answer: 'maine coon'
-                }
-            ]
-        }
-    ]
-}
-
 export default class LoginScreen extends Component {
 
     constructor(props) {
@@ -66,7 +12,8 @@ export default class LoginScreen extends Component {
             email: '',
             username: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            errorMessage: '',
         }
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -80,25 +27,102 @@ export default class LoginScreen extends Component {
     toggleFormDisplay(formToHide, formToShow) {
         document.querySelector(formToHide).style.display = "none";
         document.querySelector(formToShow).style.display = "block";
+
+        //clearing out error message
+        this.setState({
+            errorMessage: ''
+        })
     }
 
-    handleLogin() {
-        sessionStorage.setItem('isAuthenticated', true);
-        sessionStorage.setItem('user', JSON.stringify(user));
-        console.log('login');
+    handleLogin(e) {
+        e.preventDefault();
+
+        const data = JSON.stringify({
+             Email: this.state.email,
+             Password: this.state.password,
+             Username: 'placeholder'
+        })
+
+        console.log(data);
+
+        var handleResponse = (response) => {
+            //display any errors send from the server
+            if (response.error != null) {
+                this.setState({
+                    errorMessage: response.error
+                });
+            }
+            else {
+                sessionStorage.setItem('isAuthenticated', true);
+                sessionStorage.setItem('Username', response.username)
+                sessionStorage.setItem('UserID', response.id);
+                window.location.reload();
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "user/login",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("RequestVerificationToken",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            dataType: "json",
+            data: data,
+            error: function (xhr) {
+                console.log(xhr);
+            },
+            success: handleResponse
+        });
     }
 
     handleRegister(e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        if (this.state.password == this.state.confirmPassword) {
-            const data = JSON.stringify({
+             //validation
+
+            if (this.state.username.length > 15) {
+                this.setState({
+                    errorMessage: "Username must not be longer than 15 characters."
+                })
+                return;
+            }
+            if (this.state.password != this.state.confirmPassword) {
+                this.setState({
+                    errorMessage: "Passwords do not match."
+                })
+                return;
+            }
+            if (this.state.password.length < 8) {
+                this.setState({
+                    errorMessage: "Password needs to have at least 8 characters."
+                })
+                return;
+            }
+
+            //passed validation, making a post request
+        
+           const data = JSON.stringify({
                 Username: this.state.username,
                 Email: this.state.email,
                 Password: this.state.password
             });
 
-            console.log(data);
+            var handleResponse = (response) => {
+               //display any errors send from the server
+                if (response.error != null) {
+                    this.setState({
+                        errorMessage: response.error
+                    });
+                }
+                else {
+                    sessionStorage.setItem('isAuthenticated', true);
+                    sessionStorage.setItem('Username', response.username)
+                    sessionStorage.setItem('UserID', response.id);
+                    window.location.reload();
+                }
+             }
 
             $.ajax({
                 type: "POST",
@@ -113,14 +137,8 @@ export default class LoginScreen extends Component {
                 error: function (xhr) {
                     console.log(xhr);
                 },
-                success: function (xhr) {
-                    alert('success');
-                }
+                success: handleResponse
             });
-        }        
-        //sessionStorage.setItem('isAuthenticated', true);
-        //sessionStorage.setItem('user', JSON.stringify(user));
-
     }
 
     handleEmailChange(e) {
@@ -145,7 +163,7 @@ export default class LoginScreen extends Component {
                 <TitleScreenHeader />
                 
                 <div className="container">
-                    <div className="login-container">
+                    <div className="login-container text-center">
                         <form onSubmit={this.handleLogin}>
                             <h4 className="mb-3 text-center">Welcome to Flashcard Manager!</h4>
                             <ActionBox displayText="New user?" onClick={() => this.toggleFormDisplay('.login-container', '.register-container')} action="#" icon={PlusIcon} />
@@ -155,6 +173,7 @@ export default class LoginScreen extends Component {
                             <div className="form-group">
                                 <input type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="password" />
                             </div>
+                            <p class="text-danger"> {this.state.errorMessage} </p>
                             <button type="submit" className="submit-button btn btn-primary">Login</button>
                         </form>
                         <br />
@@ -176,6 +195,7 @@ export default class LoginScreen extends Component {
                             <div className="form-group">
                                 <input type="password" onChange={this.handleConfirmPasswordChange} className="form-control" placeholder="confirm password" required />
                             </div>
+                            <p class="text-danger"> {this.state.errorMessage} </p>
                             <button type="submit" className="submit-button btn btn-primary">Register</button>
                         </form>
                     </div>

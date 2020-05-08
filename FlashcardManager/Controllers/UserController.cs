@@ -21,31 +21,34 @@ namespace FlashcardManager.Controllers
             _unitOfWork = unitOfWork;
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public bool Login(string email, string password)
+        [Route("login")]
+        public ActionResult Login([FromBody] User user)
         {
-            User existingUser = _unitOfWork.User.GetFirstOrDefault(x => x.Email == email);
+            User existingUser = _unitOfWork.User.GetFirstOrDefault(x => x.Email == user.Email);
 
-            //User does not exist
-            if (existingUser == null)
+            //if user does not exist or password is incorrect
+            if (existingUser == null || !BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password))
             {
-                return false;
-            }
-
-            //Password doesn't match
-            if (!BCrypt.Net.BCrypt.Verify(password, existingUser.Password))
-            {
-                return false;
+                return Json(new { Error = "The username or password is incorrect." });
             }
 
             //All good - user authenticated
-            return true;
+            return Json(existingUser);
         }
 
         [HttpPost]
         [Route("register")]
         public ActionResult Register([FromBody] User user)
         {
+            User existingUser = _unitOfWork.User.GetFirstOrDefault(x => x.Email == user.Email);
+
+            if (existingUser != null)
+            {
+                return Json(new { 
+                    Error = "This email is already registered."
+                });
+            }
+
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             user.Password = passwordHash;

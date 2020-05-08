@@ -9,7 +9,7 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.lastOpenedSetId = this.props.lastOpenedSetId;
-        this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.username = sessionStorage.getItem('Username');
     }
     openModal() {
         var modal = document.getElementById("myModal");
@@ -22,7 +22,7 @@ export class Home extends Component {
   render () {
     return (
         <div>
-            <h4 className="mb-3">Hi {this.user.Username}! What would you like to do today?</h4>
+            <h4 className="mb-3">Hi {this.username}! What would you like to do today?</h4>
 
             {this.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
                 <> <ActionBox displayText="Continue Learning" action={"/study/" + this.lastOpenedSetId} icon={ContinueIcon} /> </>}
