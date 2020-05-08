@@ -6,18 +6,15 @@ using System.Text;
 
 namespace FlashcardManager.Models
 {
-    public class User
+    public class Set
     {
         [Key]
         public int ID { get; set; }
         [Required]
-        public string Username { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public int? LastOpenedSetId { get; set; } 
-        [ForeignKey("LastOpenedSetId")]
-        public Set Set { get; set; }
+        public int UserID { get; set; }
+        [ForeignKey("UserID")]
+        public User User { get; set; }
     }
 }

@@ -13,9 +13,11 @@ namespace FlashcardManager.DataAccess.Data.Repository
         {
             _db = db;
             User = new UserRepository(_db);
+            Set = new SetRepository(_db);
         }
 
         public IUserRepository User { get; private set; }
+        public ISetRepository Set { get; private set; }
 
         public void Dispose()
         {

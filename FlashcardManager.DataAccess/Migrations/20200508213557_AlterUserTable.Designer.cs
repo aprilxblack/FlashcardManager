@@ -4,41 +4,22 @@ using FlashcardManager.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlashcardManager.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200508213557_AlterUserTable")]
+    partial class AlterUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("FlashcardManager.Models.Set", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Set");
-                });
 
             modelBuilder.Entity("FlashcardManager.Models.User", b =>
                 {
@@ -51,7 +32,7 @@ namespace FlashcardManager.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LastOpenedSetId")
+                    b.Property<int>("LastOpenedSetId")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
@@ -63,10 +44,6 @@ namespace FlashcardManager.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LastOpenedSetId")
-                        .IsUnique()
-                        .HasFilter("[LastOpenedSetId] IS NOT NULL");
 
                     b.ToTable("User");
                 });
@@ -265,22 +242,6 @@ namespace FlashcardManager.DataAccess.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("FlashcardManager.Models.Set", b =>
-                {
-                    b.HasOne("FlashcardManager.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FlashcardManager.Models.User", b =>
-                {
-                    b.HasOne("FlashcardManager.Models.Set", "Set")
-                        .WithOne()
-                        .HasForeignKey("FlashcardManager.Models.User", "LastOpenedSetId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

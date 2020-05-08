@@ -15,6 +15,7 @@ namespace FlashcardManager.DataAccess.Data.Repository
         {
             _db = db;
         }
+
         public void Update(User user)
         {
             var objFromDb = _db.User.FirstOrDefault(x => x.ID == user.ID);
