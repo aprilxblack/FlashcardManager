@@ -8,6 +8,7 @@ namespace FlashcardManager.DataAccess.Data.Repository.IRepository
     {
         IUserRepository User { get; }
         ISetRepository Set { get; }
+        ICardRepository Card { get; }
         void Save();
     }
 }

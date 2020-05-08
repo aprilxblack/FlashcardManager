@@ -5,9 +5,10 @@ using System.Text;
 
 namespace FlashcardManager.DataAccess.Data.Repository.IRepository
 {
-    public interface ISetRepository : IRepository<Set>
+    public interface ICardRepository : IRepository<Card>
     {
-        void Update(Set set);
-        List<Set> GetSetsForUser(int userId);
+        void Update(Card card);
+        void UpdateStats(Card card);
+        List<Card> GetCardsForSet(int setId);
     }
 }

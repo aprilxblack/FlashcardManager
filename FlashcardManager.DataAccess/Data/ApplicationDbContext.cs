@@ -17,6 +17,7 @@ namespace FlashcardManager.DataAccess.Data
 
         public DbSet<User> User { get; set; }
         public DbSet<Set> Set { get; set; }
+        public DbSet<Card> Card { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -24,6 +25,7 @@ namespace FlashcardManager.DataAccess.Data
 
             builder.Entity<User>().HasKey(x => x.ID);
             builder.Entity<Set>().HasKey(x => x.ID);
+            builder.Entity<Card>().HasKey(x => x.ID);
 
         }
     }
