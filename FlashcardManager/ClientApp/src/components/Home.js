@@ -31,19 +31,19 @@ export class Home extends Component {
 
             <div id="myModal" class="modal">
 
-                <div class="modal-dialog" role="document">
+                <div className="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"></h5>
-                            <button type="button" class="close" onClick={this.closeModal} aria-label="Close">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             You haven't opened any sets recently. Please select Browse Sets option instead.
                          </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onClick={this.closeModal}>OK</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" onClick={this.closeModal}>OK</button>
                         </div>
                     </div>
                 </div>

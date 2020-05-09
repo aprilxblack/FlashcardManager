@@ -36,6 +36,9 @@ export class EditSet extends Component {
                         <p>card.Answer </p>
                     </>
                 ))}
+                {cards.length == 0 && (
+                    <h4> This set has no cards! </h4>
+                )}
             </>
         )
     }
