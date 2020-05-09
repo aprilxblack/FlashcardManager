@@ -65,6 +65,9 @@ export class EditSet extends Component {
             this.setState({
                 cards: response.cards
             })
+            //clearing out form
+            document.querySelector('#question').value = "";
+            document.querySelector('#answer').value = "";
         }
 
         $.ajax({
@@ -84,6 +87,7 @@ export class EditSet extends Component {
                 updateState(xhr);
             }
         });
+
     }
 
     static renderSetData() {
@@ -92,8 +96,8 @@ export class EditSet extends Component {
             <>
                 <h4> Editing set: {this.state.set.name} </h4>
                 <form className="mt-2 mb-3">
-                    <input type="text" onChange={this.handleQuestionChange} className="form-control mb-3" placeholder="question" required />
-                    <input type="text" onChange={this.handleAnswerChange} className="form-control mb-3" placeholder="answer" required />
+                    <input type="text" id="question" onChange={this.handleQuestionChange} className="form-control mb-3" placeholder="question" required />
+                    <input type="text" id="answer" onChange={this.handleAnswerChange} className="form-control mb-3" placeholder="answer" required />
                     <button type="button" onClick={this.addCard} className="submit-button btn btn-primary mb-3">Add</button>
                 </form>
 

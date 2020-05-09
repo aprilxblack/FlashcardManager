@@ -44,6 +44,25 @@ namespace FlashcardManager.Controllers
         }
 
         [HttpGet]
+        [Route("study")]
+        public IActionResult StudySet(int id)
+        {
+            Set set = _unitOfWork.Set.GetFirstOrDefault(x => x.ID == id);
+            List<Card> cards = _unitOfWork.Card.GetCardsForSet(id);
+
+            //update last opened set for user
+            User user = _unitOfWork.User.Get(set.UserID);
+            user.LastOpenedSetId = set.ID;
+            _unitOfWork.Save();
+
+            return Json(new
+            {
+                SetName = set.Name,
+                Cards = cards
+            });
+        }
+
+        [HttpGet]
         [Route("browse")]
         public IActionResult BrowseSets(int userId)
         {
