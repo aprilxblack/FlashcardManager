@@ -18,7 +18,7 @@ namespace FlashcardManager.DataAccess.Data.Repository
 
         public List<Card> GetCardsForSet(int setId)
         {
-            return _db.Card.Where(x => x.SetID == setId).ToList();
+            return _db.Card.Where(x => x.SetID == setId).OrderByDescending(x => x.ID).ToList();
         }
 
         public void Update(Card card)

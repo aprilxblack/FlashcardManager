@@ -33,12 +33,12 @@ namespace FlashcardManager.Controllers
         [Route("edit")]
         public IActionResult EditSet(int id)
         {
-            string setName = _unitOfWork.Set.GetFirstOrDefault(x => x.ID == id).Name;
+            Set set = _unitOfWork.Set.GetFirstOrDefault(x => x.ID == id);
             List<Card> cards = _unitOfWork.Card.GetCardsForSet(id);
 
             return Json(new
             {
-                SetName = setName,
+                Set = set,
                 Cards = cards
             });
         }
