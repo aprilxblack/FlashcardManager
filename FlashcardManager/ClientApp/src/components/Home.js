@@ -27,7 +27,7 @@ export class Home extends Component {
             {this.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
                 <> <ActionBox displayText="Continue Learning" action={"/study/" + this.lastOpenedSetId} icon={ContinueIcon} /> </>}
             <ActionBox displayText="Browse Sets" action="/browse-sets" icon={SearchIcon} />
-            <ActionBox displayText="Create a Set" action="/" icon={PlusIcon} /> 
+            <ActionBox displayText="Create a Set" action="/create-a-set" icon={PlusIcon} /> 
 
             <div id="myModal" class="modal">
 

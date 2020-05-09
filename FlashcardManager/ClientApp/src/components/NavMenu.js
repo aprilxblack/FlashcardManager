@@ -46,7 +46,7 @@ export class NavMenu extends Component {
                    <NavLink tag={Link} className="text-white" to="/browse-sets">Browse Sets </NavLink>
                 </NavItem>
                  <NavItem className="main-menu-item">
-                   <NavLink tag={Link} className="text-white" to="/">Create a Set</NavLink>
+                   <NavLink tag={Link} className="text-white" to="/create-a-set">Create a Set</NavLink>
                 </NavItem>
                  <NavItem className="main-menu-item">
                    <NavLink tag={Link} className="text-white" to="/settings">Settings</NavLink>

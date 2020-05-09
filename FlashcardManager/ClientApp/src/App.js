@@ -8,6 +8,8 @@ import { Settings } from './components/Settings';
 import './custom.css'
 import { BrowseSets } from './components/BrowseSets';
 import { Study }  from './components/Study';
+import { CreateASet } from './components/CreateASet';
+import { EditSet } from './components/EditSet';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -25,7 +27,8 @@ export default class App extends Component {
                     <Route path='/settings' component={Settings} />
                     <Route path='/browse-sets' component={BrowseSets} />
                     <Route path='/study/:id' component={Study} />
-
+                    <Route path='/create-a-set' component={CreateASet} />
+                    <Route path='/edit-set/:id' component={EditSet} />
                 </Layout>
         ); 
         
