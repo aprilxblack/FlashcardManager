@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FlashcardManager.DataAccess.Data.Repository.IRepository;
+using FlashcardManager.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlashcardManager.Controllers
@@ -12,9 +13,20 @@ namespace FlashcardManager.Controllers
     public class SetController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public IActionResult Index()
+
+        public SetController(IUnitOfWork unitOfWork)
         {
-            return View();
+            _unitOfWork = unitOfWork;
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public int Create([FromBody] Set set)
+        {
+            _unitOfWork.Set.Add(set);
+            _unitOfWork.Save();
+
+            return set.ID;
         }
     }
 }
