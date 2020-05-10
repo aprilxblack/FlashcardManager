@@ -38,12 +38,7 @@ namespace FlashcardManager.Controllers
         [Route("update-stats")]
         public IActionResult UpdateStats([FromBody] Card card)
         {
-            var cardFromDb = _unitOfWork.Card.Get(card.ID);
-
-            cardFromDb.CorrectAnswersNo = card.CorrectAnswersNo;
-            cardFromDb.IncorrectAnswersNo = card.IncorrectAnswersNo;
-            cardFromDb.IsEasy = card.IsEasy;
-            cardFromDb.IsKnown = card.IsKnown;
+            _unitOfWork.Card.UpdateStats(card);
 
             _unitOfWork.Save();
 
