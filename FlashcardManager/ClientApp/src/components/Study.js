@@ -14,13 +14,18 @@ export class Study extends Component {
             setName: '',
             loading: true,
             currentCard: null,
-            stats: null
+            stats: null,
+            good: 0,
+            fail: 0,
+            known: 0, 
+            left: 0
         };
         this.setId = this.props.match.params.id;
 
         this.fetchAllCards = this.fetchAllCards.bind(this);
         Study.renderCards = Study.renderCards.bind(this);
         this.updateCardStats = this.updateCardStats.bind(this);
+        this.updateStatsDisplay = this.updateStatsDisplay.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +44,7 @@ export class Study extends Component {
             loading: false,
             currentCard: data.cards[Math.round(Math.random() * ((data.cards.length - 1) - 0) + 0)]
         })
+        this.updateStatsDisplay();
     }
 
     showAnswer() {
@@ -68,6 +74,8 @@ export class Study extends Component {
                 stats.CorrectAnswersNo++;
                 if (stats.CorrectAnswersNo >= 2) {
                     stats.isKnown = true;
+                    stats.incorrectAnswersNo = 0;
+                    stats.correctAnswersNo = 0;
                 }
                 break;
             case 'incorrect':
@@ -76,6 +84,8 @@ export class Study extends Component {
             case 'easy':
                 stats.IsEasy = true;
                 stats.IsKnown = true;
+                stats.incorrectAnswersNo = 0;
+                stats.correctAnswersNo = 0;
                 break;
         }
 
@@ -111,6 +121,16 @@ export class Study extends Component {
 
         answer.style.display = "none";
         button.style.display = "block";
+        this.updateStatsDisplay();
+    }
+
+    updateStatsDisplay() {
+        this.setState({
+            known: this.state.cards.filter(x => x.isKnown == true).length,
+            good: this.state.cards.filter(x => x.correctAnswersNo >= 1).length,
+            fail: this.state.cards.filter(x => x.incorrectAnswersNo >= 1).length,
+            left: this.state.cards.length - this.state.cards.filter(x => x.isKnown == true).length
+        })
     }
 
     static renderCards() {
@@ -119,10 +139,11 @@ export class Study extends Component {
             <h5 className="text-center mb-2">Now studying:
                     <br />
                 {this.state.setName} ({this.state.cards.length} cards) </h5>
-            <div className="stats text-center mb-2 font-weight-bold">
-                <span class="text-success mr-2">Good: 1 </span>
-                <span class="text-danger mr-2">Fail: 1 </span>
-                <span class="text-info">Left: 4 </span>
+                <div className="stats text-center mb-2 font-weight-bold">
+                    <span class="text-success mr-2">Good: {this.state.good} </span>
+                    <span class="text-danger mr-2">Fail: {this.state.fail} </span>
+                    <span class="text-info mr-2">Known: {this.state.known} </span>
+                    <span class="font-weight-bold">Left: {this.state.left} </span>
 
             </div>
             <div className="action-box container-fluid p-4 bg-pink text-center shadow p-1 mb-3 rounded-lg" onClick={this.onClick} >
