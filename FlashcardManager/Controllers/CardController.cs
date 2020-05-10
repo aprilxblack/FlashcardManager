@@ -33,5 +33,26 @@ namespace FlashcardManager.Controllers
                 Cards = updatedCards
             });
         }
+
+        [HttpPost]
+        [Route("update-stats")]
+        public IActionResult UpdateStats([FromBody] Card card)
+        {
+            var cardFromDb = _unitOfWork.Card.Get(card.ID);
+
+            cardFromDb.CorrectAnswersNo = card.CorrectAnswersNo;
+            cardFromDb.IncorrectAnswersNo = card.IncorrectAnswersNo;
+            cardFromDb.IsEasy = card.IsEasy;
+            cardFromDb.IsKnown = card.IsKnown;
+
+            _unitOfWork.Save();
+
+            List<Card> updatedCards = _unitOfWork.Card.GetCardsForSet(card.SetID);
+
+            return Json(new
+            {
+                Cards = updatedCards
+            });
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace FlashcardManager.DataAccess.Data.Repository.IRepository
     {
         void Update(Set set);
         List<Set> GetSetsForUser(int userId);
+        Stats GetStats(int setId);
     }
 }

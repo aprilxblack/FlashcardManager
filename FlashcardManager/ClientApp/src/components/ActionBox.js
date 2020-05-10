@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import './ActionBox.css'
+import { Link } from 'react-router-dom';
 
 export class ActionBox extends Component {
     constructor(props) {
@@ -12,12 +13,12 @@ export class ActionBox extends Component {
 
     render() {
         return (
-            <a href={this.action}>
+            <Link to={this.action}>
                 <div className="action-box container-fluid p-4 bg-pink text-center shadow p-1 mb-3 rounded-lg" onClick={this.onClick} >
                     {this.displayText}
                     {this.icon != null && (<><img src={this.icon} className="icon ml-2 mr-2 float-left"/></>)}
-            </div>
-            </a>
+                </div>
+            </Link>
         )
     }
 

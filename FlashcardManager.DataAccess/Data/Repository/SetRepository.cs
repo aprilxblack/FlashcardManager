@@ -21,6 +21,19 @@ namespace FlashcardManager.DataAccess.Data.Repository
             return _db.Set.Where(x => x.UserID == userId).ToList();
         }
 
+        public Stats GetStats(int setId)
+        {
+            IEnumerable<Card> cardsForSet = _db.Card.Where(x => x.SetID == setId);
+
+            Stats stats = new Stats() {
+                EasyCards = cardsForSet.Where(x => x.IsEasy == true).ToList(),
+                HardCards = cardsForSet.Where(x => x.IncorrectAnswersNo >= 3).ToList(),
+                CardsLeft = cardsForSet.Where(x => x.IsKnown == false).ToList()
+            };
+
+            return stats;
+        }
+
         public void Update(Set set)
         {
             var objFromDb = _db.Set.FirstOrDefault(x => x.ID == set.ID);
