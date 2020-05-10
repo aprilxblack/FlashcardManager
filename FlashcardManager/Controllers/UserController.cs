@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using FlashcardManager.DataAccess.Data.Repository.IRepository;
 using FlashcardManager.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
@@ -59,6 +61,18 @@ namespace FlashcardManager.Controllers
             User newUser = _unitOfWork.User.GetFirstOrDefault(x => x.Email == user.Email);
 
             return Json(newUser);
+        }
+
+        [HttpGet]
+        [Route("get-data")]
+        public IActionResult GetUserData(int userId)
+        {
+            User user = _unitOfWork.User.Get(userId);
+
+            return Json(new {
+                username = user.Username,
+                lastOpenedSetId = user.LastOpenedSetId
+            });
         }
     }
 }

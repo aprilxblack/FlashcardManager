@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using FlashcardManager.DataAccess.Data.Repository.IRepository;
 using FlashcardManager.DataAccess.Data.Repository;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace FlashcardManager
 {
@@ -27,7 +29,10 @@ namespace FlashcardManager
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

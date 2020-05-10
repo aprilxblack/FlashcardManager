@@ -24,8 +24,11 @@ export class Study extends Component {
     }
 
     async fetchAllCards() {
-        const response = await fetch("set/study?id=" + this.setId);
+        const response = await fetch("set/study?id=" + this.setId, {
+            method: 'get'
+        });
         const data = await response.json();
+        console.log(data);
         this.setState({
             cards: data.cards,
             setName: data.setName,

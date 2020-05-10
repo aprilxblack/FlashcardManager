@@ -8,8 +8,16 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props);
-        this.lastOpenedSetId = this.props.lastOpenedSetId;
         this.username = sessionStorage.getItem('Username');
+        this.userId = sessionStorage.getItem('UserID');
+        this.state = {
+            username: null,
+            lastOpenedSetId: null,
+            loading: true
+        }
+
+        this.fetchUserData = this.fetchUserData.bind(this);
+        Home.renderHomepage = Home.renderHomepage.bind(this);
     }
     openModal() {
         var modal = document.getElementById("myModal");
@@ -19,37 +27,64 @@ export class Home extends Component {
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
-  render () {
-    return (
-        <div>
-            <h4 className="mb-3">Hi {this.username}! What would you like to do today?</h4>
 
-            {this.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
-                <> <ActionBox displayText="Continue Learning" action={"/study/" + this.lastOpenedSetId} icon={ContinueIcon} /> </>}
-            <ActionBox displayText="Browse Sets" action="/browse-sets" icon={SearchIcon} />
-            <ActionBox displayText="Create a Set" action="/create-a-set" icon={PlusIcon} /> 
+    componentDidMount() {
+        this.fetchUserData();
+    }
 
-            <div id="myModal" class="modal">
+    async fetchUserData() {
+        const response = await fetch("user/get-data?userId=" + this.userId);
+        const data = await response.json();
+        this.setState({
+            username: data.username,
+            lastOpenedSetId: data.lastOpenedSetId,
+            loading: false
+        })
+        console.log(this.state);
+    }
 
-                <div className="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel"></h5>
-                            <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            You haven't opened any sets recently. Please select Browse Sets option instead.
+    static renderHomepage() {
+        return (
+            <>
+                <h4 className="mb-3">Hi {this.username}! What would you like to do today?</h4>
+
+                {this.state.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
+                    <> <ActionBox displayText="Continue Learning" action={"/study/" + this.state.lastOpenedSetId} icon={ContinueIcon} /> </>}
+                <ActionBox displayText="Browse Sets" action="/browse-sets" icon={SearchIcon} />
+                <ActionBox displayText="Create a Set" action="/create-a-set" icon={PlusIcon} />
+
+                <div id="myModal" class="modal">
+
+                    <div className="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel"></h5>
+                                <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                You haven't opened any sets recently. Please select Browse Sets option instead.
                          </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={this.closeModal}>OK</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={this.closeModal}>OK</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-      </div>
+                </div>
+            </>
+        );
+    }
+
+    render() {
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Home.renderHomepage();
+      return (
+          <div>
+              {contents}
+          </div>
     );
   }
 }
