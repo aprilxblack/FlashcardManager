@@ -18,7 +18,8 @@ export class Study extends Component {
             good: 0,
             fail: 0,
             known: 0, 
-            left: 0
+            left: 0,
+            studyCompleted: false
         };
         this.setId = this.props.match.params.id;
 
@@ -37,14 +38,23 @@ export class Study extends Component {
             method: 'get'
         });
         const data = await response.json();
-        console.log(data);
-        this.setState({
-            cards: data.cards,
-            setName: data.setName,
-            loading: false,
-            currentCard: data.cards[Math.round(Math.random() * ((data.cards.length - 1) - 0) + 0)]
-        })
-        this.updateStatsDisplay();
+
+        var unknownCards = data.cards.filter(x => x.isKnown == false)
+        if (unknownCards.length == 0) {
+            this.setState({
+                studyCompleted: true
+            })
+        }
+        else {
+            this.setState({
+                cards: data.cards,
+                setName: data.setName,
+                loading: false,
+                currentCard: unknownCards[Math.round(Math.random() * ((unknownCards.length - 1) - 0) + 0)]
+            })
+            this.updateStatsDisplay();
+        }
+       
     }
 
     showAnswer() {
@@ -110,18 +120,30 @@ export class Study extends Component {
         });
 
         const data = await response
-        console.log(data);
+
+        //do not include known cards in the randomizer
+        var unknownCards = data.cards.filter(x => x.isKnown == false);
+
         this.setState({
-            cards: data.cards,
-            currentCard: this.state.cards[Math.round(Math.random() * ((this.state.cards.length - 1) - 0) + 0)]
+            cards: data.cards
         })
 
-        var answer = document.querySelector('.answer-container');
-        var button = document.querySelector('.button-container');
+        if (unknownCards.length == 0) {
+            this.setState({
+                studyCompleted: true
+            })
+        }
+        else {
+            this.setState({
+                currentCard: unknownCards[Math.round(Math.random() * ((unknownCards.length - 1) - 0) + 0)]
+            })
+            var answer = document.querySelector('.answer-container');
+            var button = document.querySelector('.button-container');
 
-        answer.style.display = "none";
-        button.style.display = "block";
-        this.updateStatsDisplay();
+            answer.style.display = "none";
+            button.style.display = "block";
+            this.updateStatsDisplay();
+        }
     }
 
     updateStatsDisplay() {
@@ -131,6 +153,10 @@ export class Study extends Component {
             fail: this.state.cards.filter(x => x.incorrectAnswersNo >= 1).length,
             left: this.state.cards.length - this.state.cards.filter(x => x.isKnown == true).length
         })
+    }
+
+    resetAllStats() {
+        //reset stats code goes here
     }
 
     static renderCards() {
@@ -170,6 +196,12 @@ export class Study extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : Study.renderCards();
+        if (this.state.studyCompleted == true) {
+            contents = (<>
+                <h4 className="text-center mb-3">Congratulations, you completed this set! </h4>
+                <button className="submit-button btn btn-primary" onClick={this.resetAllStats}>Start over </button>
+            </>) 
+        }
         return (
             <div>
                 {contents}   

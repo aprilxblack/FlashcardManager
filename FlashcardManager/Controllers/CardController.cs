@@ -49,5 +49,20 @@ namespace FlashcardManager.Controllers
                 Cards = updatedCards
             });
         }
+
+        [HttpPost]
+        [Route("reset-stats")]
+        public IActionResult ResetAllStats(int setId)
+        {
+            _unitOfWork.Card.ResetAllStats(setId);
+            _unitOfWork.Save();
+
+            List<Card> updatedCards = _unitOfWork.Card.GetCardsForSet(setId);
+
+            return Json(new
+            {
+                Cards = updatedCards
+            });
+        }
     }
 }

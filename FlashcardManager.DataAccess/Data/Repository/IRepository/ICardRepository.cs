@@ -9,6 +9,7 @@ namespace FlashcardManager.DataAccess.Data.Repository.IRepository
     {
         void Update(Card card);
         void UpdateStats(Card card);
+        void ResetAllStats(int setId);
         List<Card> GetCardsForSet(int setId);
     }
 }

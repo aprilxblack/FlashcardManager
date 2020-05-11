@@ -21,6 +21,21 @@ namespace FlashcardManager.DataAccess.Data.Repository
             return _db.Card.Where(x => x.SetID == setId).OrderByDescending(x => x.ID).ToList();
         }
 
+        public void ResetAllStats(int setId)
+        {
+            List<Card> set = _db.Card.Where(x => x.SetID == setId).ToList();
+
+            foreach (Card card in set)
+            {
+                card.CorrectAnswersNo = 0;
+                card.IncorrectAnswersNo = 0;
+                card.IsEasy = false;
+                card.IsKnown = false;
+            }
+
+            _db.SaveChanges();
+        }
+
         public void Update(Card card)
         {
             var objFromDb = _db.Card.FirstOrDefault(x => x.ID == card.ID);
