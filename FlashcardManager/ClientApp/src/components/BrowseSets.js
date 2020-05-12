@@ -49,10 +49,20 @@ export class BrowseSets extends Component {
                 {
                     sets.map((set, i) => (
                         <>
-                        <ActionBox displayText={set.name} action={"/study/" + set.id} style={{ display: "inline-block" }} />
-                            <div className="button-container mb-2" style={{ display: "table", margin: "0 auto" }}>
-                                <a href={"/edit-set/" + set.id}><img className="icon mr-2" src={EditIcon} style={{ display: "inline-block" }} /></a>
-                                <span onClick={() => showAlert(set.id)}><img className="icon" src={DeleteIcon} style={{ display: "inline-block", cursor: "pointer" }} /> </span>
+                            
+                            <div className="row">
+                                <div className="col-9">
+                                    <a href={"/study/" + set.id}>
+                                        <div className="action-box p-4 bg-pink text-center shadow p-1 mb-3 rounded-lg" >
+                                            {set.name}
+                                        </div>
+                                    </a>
+                                </div>
+                                <div className="col-3 p-0 pt-3"> 
+                                    <a href={"/edit-set/" + set.id}><img className="icon mr-1" src={EditIcon} /></a>
+                                    <span onClick={() => showAlert(set.id)}><img className="icon" src={DeleteIcon} /> </span>
+                                </div>
+             
                          </div>
                        </>
                     ))

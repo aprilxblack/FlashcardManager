@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { ActionBox } from './ActionBox';
 import './Study.css'
@@ -27,6 +27,7 @@ export class Study extends Component {
         Study.renderCards = Study.renderCards.bind(this);
         this.updateCardStats = this.updateCardStats.bind(this);
         this.updateStatsDisplay = this.updateStatsDisplay.bind(this);
+        this.resetAllStats = this.resetAllStats.bind(this);
     }
 
     componentDidMount() {
@@ -155,8 +156,26 @@ export class Study extends Component {
         })
     }
 
-    resetAllStats() {
-        //reset stats code goes here
+    async resetAllStats() {
+        const response = await $.ajax({
+            type: "POST",
+            url: "card/reset-stats?setId=" + this.setId,
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("RequestVerificationToken",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            dataType: "json"
+        });
+        const data = await response;
+        this.setState({
+            cards: data.cards,
+            studyCompleted: false,
+            known: 0,
+            good: 0,
+            fail: 0,
+            left: 0
+        });
     }
 
     static renderCards() {

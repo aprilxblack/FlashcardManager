@@ -40,7 +40,6 @@ export class Home extends Component {
             lastOpenedSetId: data.lastOpenedSetId,
             loading: false
         })
-        console.log(this.state);
     }
 
     static renderHomepage() {
@@ -49,7 +48,16 @@ export class Home extends Component {
                 <h4 className="mb-3">Hi {this.username}! What would you like to do today?</h4>
 
                 {this.state.lastOpenedSetId == null ? <><ActionBox displayText="Continue Learning" onClick={this.openModal} action="#" icon={ContinueIcon} /> </> :
-                    <> <ActionBox displayText="Continue Learning" action={"/study/" + this.state.lastOpenedSetId} icon={ContinueIcon} /> </>}
+                    <>
+                        <a href={"/study/" + this.state.lastOpenedSetId}>
+                            <div className="action-box container-fluid p-4 bg-pink text-center shadow p-1 mb-3 rounded-lg" >
+                                Continue Learning
+                                <img src={ContinueIcon} className="icon ml-2 mr-2 float-left" />
+                            </div>
+                        </a>        
+                    </>}
+                        
+                        
                 <ActionBox displayText="Browse Sets" action="/browse-sets" icon={SearchIcon} />
                 <ActionBox displayText="Create a Set" action="/create-a-set" icon={PlusIcon} />
 

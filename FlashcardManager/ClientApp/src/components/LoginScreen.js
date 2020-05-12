@@ -43,8 +43,6 @@ export default class LoginScreen extends Component {
              Username: 'placeholder'
         })
 
-        console.log(data);
-
         var handleResponse = (response) => {
             //display any errors send from the server
             if (response.error != null) {

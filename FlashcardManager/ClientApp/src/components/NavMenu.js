@@ -31,9 +31,9 @@ export class NavMenu extends Component {
                     <a href="/"> <img src={Icon} alt={"Icon"} className="menu-icon" /></a>
                     <NavbarBrand tag={Link} to="/" className="text-white page-title">Flashcard Manager</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <a href="/profile">
+                    <Link to="/profile">
                         <img src={ProfileIcon} alt={"Profile"} className="profile-icon"/>
-                    </a>
+                    </Link>
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
