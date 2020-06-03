@@ -15,10 +15,11 @@ export class Home extends Component {
             lastOpenedSetId: null,
             loading: true
         }
-
+        //binding methods with the class
         this.fetchUserData = this.fetchUserData.bind(this);
         Home.renderHomepage = Home.renderHomepage.bind(this);
     }
+    //toggle popup display
     openModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "block";

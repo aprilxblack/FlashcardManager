@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import $ from 'jquery'; 
-import { Link } from 'react-router-dom';;
 
-export class CreateASet extends Component {
+export class CreateFromFile extends Component {
 
     constructor(props) {
         super(props);
@@ -48,15 +47,7 @@ export class CreateASet extends Component {
         return (
             <>
                 <div className="text-center">
-                    <form onSubmit={this.create}>
-                        <h4 className="mb-3 text-center">Enter a name for your new set:</h4>
-                        <input type="text" onChange={this.handleNameChange} className="form-control" placeholder="enter name here" required />
-                        <br />
-                        <button type="submit" className=" submit-button btn btn-primary">Create</button>
-                    </form>
-                        <br />
-                    <h4>Or... </h4>
-                    <Link className="submit-button btn btn-primary" to="/create-from-file" style={{ width: "150px" }}>Create from file</Link>
+                    <p>Create from file </p>
                 </div>
             </>
         )

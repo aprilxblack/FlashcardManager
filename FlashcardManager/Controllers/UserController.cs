@@ -74,5 +74,21 @@ namespace FlashcardManager.Controllers
                 lastOpenedSetId = user.LastOpenedSetId
             });
         }
+
+        [HttpGet]
+        [Route("get-profile-data")]
+        public IActionResult GetProfileData(int userId)
+        {
+            User user = _unitOfWork.User.Get(userId);
+
+            int numberOfSets = _unitOfWork.Set.GetSetsForUser(user.ID).Count;
+
+            return Json(new
+            {
+                Username = user.Username,
+                Email = user.Email,
+                NumberOfSets = numberOfSets
+            });
+        }
     }
 }

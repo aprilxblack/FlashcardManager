@@ -10,6 +10,7 @@ import { BrowseSets } from './components/BrowseSets';
 import { Study }  from './components/Study';
 import { CreateASet } from './components/CreateASet';
 import { EditSet } from './components/EditSet';
+import { CreateFromFile } from './components/CreateFromFile';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -29,6 +30,7 @@ export default class App extends Component {
                     <Route path='/study/:id' component={Study} />
                     <Route path='/create-a-set' component={CreateASet} />
                     <Route path='/edit-set/:id' component={EditSet} />
+                    <Route path='/create-from-file' component={CreateFromFile} />
                 </Layout>
         ); 
         

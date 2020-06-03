@@ -60,7 +60,8 @@ export class EditSet extends Component {
             IsEasy: false,
             IsKnown: false
         }
-
+        //updating the state after completing AJAX call
+        //so that the user can see the new card immediately
         var updateState = (response) => {
             this.setState({
                 cards: response.cards

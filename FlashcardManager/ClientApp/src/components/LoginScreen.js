@@ -80,7 +80,6 @@ export default class LoginScreen extends Component {
             e.preventDefault();
 
              //validation
-
             if (this.state.username.length > 15) {
                 this.setState({
                     errorMessage: "Username must not be longer than 15 characters."
@@ -101,7 +100,6 @@ export default class LoginScreen extends Component {
             }
 
             //passed validation, making a post request
-        
            const data = JSON.stringify({
                 Username: this.state.username,
                 Email: this.state.email,
@@ -109,7 +107,7 @@ export default class LoginScreen extends Component {
             });
 
             var handleResponse = (response) => {
-               //display any errors send from the server
+               //display any errors send from the server - called after completing a post request
                 if (response.error != null) {
                     this.setState({
                         errorMessage: response.error
@@ -123,6 +121,7 @@ export default class LoginScreen extends Component {
                 }
              }
 
+            //make a post request
             $.ajax({
                 type: "POST",
                 url: "user/register",
