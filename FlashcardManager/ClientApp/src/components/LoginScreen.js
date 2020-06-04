@@ -55,6 +55,7 @@ export default class LoginScreen extends Component {
                 sessionStorage.setItem('Username', response.username)
                 sessionStorage.setItem('UserID', response.id);
                 sessionStorage.setItem('LastOpenedSetId', response.lastOpenedSetId);
+                sessionStorage.setItem('isMuted', false);
                 window.location.reload();
             }
         }

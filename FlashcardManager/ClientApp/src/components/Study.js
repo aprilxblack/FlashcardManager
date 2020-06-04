@@ -130,6 +130,7 @@ export class Study extends Component {
         })
 
         if (unknownCards.length == 0) {
+            this.playSound('tada.mp3');
             this.setState({
                 studyCompleted: true
             })
@@ -202,9 +203,18 @@ export class Study extends Component {
                     {this.state.currentCard.answer}
                 </div>
                     <div className="answer-buttons">
-                        <button className="answer-button-single btn btn-success" onClick={() => this.handleAnswer('correct')}>Correct </button>
-                        <button className="answer-button-single btn btn-danger" onClick={() => this.handleAnswer('incorrect')}>Incorrect </button>
-                        <button className="answer-button-single btn btn-info" onClick={() => this.handleAnswer('easy')}>Easy </button>
+                        <button className="answer-button-single btn btn-success" onClick={() => {
+                            this.handleAnswer('correct');
+                            this.playSound('correct.mp3');
+                        }}>Correct </button>
+                        <button className="answer-button-single btn btn-danger" onClick={() => {
+                            this.handleAnswer('incorrect');
+                            this.playSound('incorrect.mp3');
+                        }}>Incorrect </button>
+                        <button className="answer-button-single btn btn-info" onClick={() => {
+                            this.handleAnswer('easy');
+                            this.playSound('easy.mp3');
+                        }}>Easy </button>
                 </div>
             </div>
         </>
@@ -218,7 +228,10 @@ export class Study extends Component {
         if (this.state.studyCompleted == true) {
             contents = (<>
                 <h4 className="text-center mb-3">Congratulations, you completed this set! </h4>
-                <button className="submit-button btn btn-primary" onClick={this.resetAllStats}>Start over </button>
+                <button className="submit-button btn btn-primary" onClick={() => {
+                    this.resetAllStats();
+                    this.playSound('click.mp3');
+                }}>Start over </button>
             </>) 
         }
         return (
@@ -226,5 +239,12 @@ export class Study extends Component {
                 {contents}   
             </div>
         )
+    }
+
+    playSound(file) {
+        if (!JSON.parse(sessionStorage.getItem('isMuted'))) {
+            var click = new Audio('/sounds/' + file);
+            click.play();
+        }
     }
 }

@@ -9,7 +9,7 @@ export class Footer extends Component {
         super(props);
         this.username = sessionStorage.getItem('Username');
         this.state = {
-            isMuted: false
+            isMuted: JSON.parse(sessionStorage.getItem('isMuted'))
         }
     }
 
@@ -18,8 +18,6 @@ export class Footer extends Component {
             isMuted: isMuted
         })
         sessionStorage.setItem('isMuted', isMuted);
-        console.log(sessionStorage.getItem('isMuted'));
-        console.log(this.state);
     }
     render() {
         return (
