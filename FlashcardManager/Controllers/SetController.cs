@@ -129,7 +129,7 @@ namespace FlashcardManager.Controllers
                     var card = new Card()
                     {
                         Question = words[0],
-                        Answer = words[0],
+                        Answer = words[1],
                         SetID = setId,
                         CorrectAnswersNo = 0,
                         IncorrectAnswersNo = 0,
