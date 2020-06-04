@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qRcdC+iOlE3XBM4ilG7DVYjnG/Dfo8kTOpI/6ryVjuA1MafWBYnsUt89ty2/KfKlhatVBx5Vz4D/Sg2sKgFpCg==",
+  "dgSpecHash": "Tx5K05iQZuVeJR/hAhiq7QdUkauVN0IYKjsLLQtwUk8BYuQrGNF7yysH6G5nhPLKa89njAN60qWzzM1IJkCqfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Karolina\\Desktop\\Projects\\FlashcardManager\\FlashcardManager.Models\\FlashcardManager.Models.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Karolina\\.nuget\\packages\\microsoft.aspnetcore.http.features\\3.1.4\\microsoft.aspnetcore.http.features.3.1.4.nupkg.sha512",
+    "C:\\Users\\Karolina\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.4\\microsoft.extensions.primitives.3.1.4.nupkg.sha512",
+    "C:\\Users\\Karolina\\.nuget\\packages\\system.io.pipelines\\4.7.1\\system.io.pipelines.4.7.1.nupkg.sha512"
+  ],
   "logs": []
 }

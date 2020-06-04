@@ -2,8 +2,8 @@ C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\bin\
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\bin\Debug\netcoreapp3.1\FlashcardManager.Models.dll
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\bin\Debug\netcoreapp3.1\FlashcardManager.Models.pdb
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.csprojAssemblyReference.cache
-C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.csproj.CoreCompileInputs.cache
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.AssemblyInfoInputs.cache
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.AssemblyInfo.cs
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.dll
 C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.pdb
+C:\Users\Karolina\Desktop\Projects\FlashcardManager\FlashcardManager.Models\obj\Debug\netcoreapp3.1\FlashcardManager.Models.csproj.CoreCompileInputs.cache

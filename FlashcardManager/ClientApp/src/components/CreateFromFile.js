@@ -18,29 +18,29 @@ export class CreateFromFile extends Component {
     }
     create(e) {
         e.preventDefault();
-        const data = JSON.stringify({
-            Name: this.state.setName,
-            UserID: sessionStorage.getItem('UserID')
-        })
+
+        let data = new FormData();
+        data.append('SetName', this.state.setName);
+        data.append('UserID', sessionStorage.getItem('UserID'));
+        data.append('Files', document.getElementById('csvFile').files[0])
+        console.log(data);
 
         var handleResponse = (response) => {
-            window.location.replace('/edit-set/' + response.toString())
+            window.location.replace('/edit-set/' + response.setId)
         }
 
         $.ajax({
-            type: "POST",
-            url: "set/create",
-            contentType: "application/json; charset=utf-8",
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("RequestVerificationToken",
-                    $('input:hidden[name="__RequestVerificationToken"]').val());
-            },
-            dataType: "json",
+            url: 'set/create-from-csv',
             data: data,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (data) {
+                handleResponse(data)
+            },
             error: function (xhr) {
                 console.log(xhr);
-            },
-            success: handleResponse
+           }
         });
     }
     render() {
@@ -48,6 +48,15 @@ export class CreateFromFile extends Component {
             <>
                 <div className="text-center">
                     <p>Create from file </p>
+                    <p class="text-danger">Note: only CSV files are accepted. It should consist of two columns: question (left) and answer (right). No headers. </p>
+                    <form onSubmit={this.create}>
+                        <input type="text" onChange={this.handleNameChange} className="form-control" placeholder="Set name" required />
+                        <br />
+                        <input type="file" id="csvFile" accept=".csv" required />
+                        <br />
+                        <br/>
+                        <button type="submit" className="submit-button btn btn-primary">Create</button>
+                    </form>
                 </div>
             </>
         )
